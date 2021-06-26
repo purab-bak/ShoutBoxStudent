@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShoutBoxStudent">
-        <activity android:name=".ProjectFeed"></activity>
-        <activity android:name=".ProjectDisplay" />
-        <activity android:name=".AddProject" />
-        <activity android:name=".LoginScreen" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.ProjectFeed"></activity>
+        <activity android:name=".Activities.ProjectDisplay" />
+        <activity android:name=".Activities.AddProject" />
+        <activity android:name=".Activities.LoginScreen" />
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

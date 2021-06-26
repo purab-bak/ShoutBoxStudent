@@ -1,4 +1,4 @@
-package org.kotakeducation.shoutboxstudent;
+package org.kotakeducation.shoutboxstudent.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import org.kotakeducation.shoutboxstudent.R;
 
 public class LoginScreen extends AppCompatActivity {
 

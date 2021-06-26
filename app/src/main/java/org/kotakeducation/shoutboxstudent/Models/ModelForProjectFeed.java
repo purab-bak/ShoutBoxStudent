@@ -1,4 +1,4 @@
-package org.kotakeducation.shoutboxstudent;
+package org.kotakeducation.shoutboxstudent.Models;
 
 public class ModelForProjectFeed {
 

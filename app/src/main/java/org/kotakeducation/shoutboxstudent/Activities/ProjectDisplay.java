@@ -1,4 +1,4 @@
-package org.kotakeducation.shoutboxstudent;
+package org.kotakeducation.shoutboxstudent.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,11 +15,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import org.kotakeducation.shoutboxstudent.R;
 
 public class ProjectDisplay extends AppCompatActivity {
 
@@ -30,10 +34,16 @@ public class ProjectDisplay extends AppCompatActivity {
     private FirebaseFirestore db;
     private StorageReference reference= FirebaseStorage.getInstance().getReference();
 
+    FirebaseAuth mAuth;
+    FirebaseUser mCurrentUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_display);
+
+        mAuth = FirebaseAuth.getInstance();
+        mCurrentUser = mAuth.getCurrentUser();
 
         projectTitle=findViewById(R.id.ProjectTitle);
         projectDesc=findViewById(R.id.ProjectDescription);
@@ -45,6 +55,15 @@ public class ProjectDisplay extends AppCompatActivity {
         Intent intent=getIntent();
         UserID=intent.getStringExtra("User ID");
         ProjectID=intent.getStringExtra("Project Id");
+
+
+        //condition for students
+        if (!mCurrentUser.getUid().equals(UserID)){
+            Toast.makeText(ProjectDisplay.this, "Project belongs to current user", Toast.LENGTH_SHORT).show();
+
+            deleteProject.setVisibility(View.GONE);
+            updateProject.setVisibility(View.GONE);
+        }
 
         display(UserID,ProjectID);
 

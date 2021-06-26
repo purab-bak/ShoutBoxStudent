@@ -1,10 +1,12 @@
-package org.kotakeducation.shoutboxstudent;
+package org.kotakeducation.shoutboxstudent.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import org.kotakeducation.shoutboxstudent.R;
 
 public class MainActivity extends AppCompatActivity {
 
