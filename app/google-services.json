@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "960104334396-pp3qlu3t81iud4cvq1ha6l9hrrn8iip1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.kotakeducation.shoutbox",
+            "certificate_hash": "7cac2e619f88d00720f43b6afeb40236a28ce7b2"
+          }
+        },
+        {
           "client_id": "960104334396-427ck9b6k7vs62mlshd6d8pl4f1iq9b6.apps.googleusercontent.com",
           "client_type": 3
         }
