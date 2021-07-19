@@ -1,15 +1,14 @@
 package org.kotakeducation.shoutboxstudent.Activities;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,26 +26,20 @@ import org.kotakeducation.shoutboxstudent.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectFeed extends AppCompatActivity {
+public class ProjectFeedActivity extends AppCompatActivity {
 
     FloatingActionButton floatingActionButton;
     private RecyclerView recyclerView;
     private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
+    //private FirebaseAuth mAuth;
     private AdapterProjectFeed adapter;
     //private ImageView log_out;
     private List<ModelForProjectFeed> list;
-
-    Button logoutBtn;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_feed);
-
-        mAuth = FirebaseAuth.getInstance();
 
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -61,32 +54,26 @@ public class ProjectFeed extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProjectFeed.this,AddProject.class);
+                Intent intent = new Intent(ProjectFeedActivity.this, AddProjectActivity.class);
+                intent.putExtra("activity", "feed");
                 startActivity(intent);
-            }
-        });
-
-        logoutBtn = findViewById(R.id.logoutBtn);
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mAuth.signOut();
-                startActivity(new Intent(ProjectFeed.this, LoginScreen.class));
-                finish();
-
             }
         });
 
     }
 
     public void showData(){
+
+
+
         db.collection("Projects").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.clear();
                         for(DocumentSnapshot snapshot : task.getResult()){
-                            ModelForProjectFeed model =new ModelForProjectFeed(snapshot.getString("Project Title"),snapshot.getString("User ID"),snapshot.getString("Date of Upload"),snapshot.getString("User ID"),snapshot.getString("Project Id"));
+
+                            ModelForProjectFeed model =new ModelForProjectFeed(snapshot.getString("Project Title"),snapshot.getString("User Name"),snapshot.getString("Date of Upload"),snapshot.getString("User ID"),snapshot.getString("Project Id"));
                             list.add(model);
                         }
                         adapter.notifyDataSetChanged();
@@ -94,8 +81,15 @@ public class ProjectFeed extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ProjectFeed.this, "Check your Internet Connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProjectFeedActivity.this, "Check your Internet Connection", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void logoutUser(View view) {
+
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(ProjectFeedActivity.this, LoginScreen.class));
+        finish();
     }
 }

@@ -36,8 +36,6 @@ public class LoginScreen extends AppCompatActivity {
 
     private static final String TAG = "login";
     private FirebaseAuth mAuth;
-    private EditText email,passWord;
-    private Button signInButton;
 
     LinearLayout googleSignInButton;
     private GoogleSignInClient mGoogleSignInClient;
@@ -52,52 +50,12 @@ public class LoginScreen extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(LoginScreen.this,ProjectFeed.class);
+            Intent intent = new Intent(LoginScreen.this,ProjectFeedActivity.class);
             startActivity(intent);
             finish();
         }
 
-        email=findViewById(R.id.email);
-        passWord=findViewById(R.id.password);
-        signInButton= findViewById(R.id.signInButton);
-
         googleSignInButton = findViewById(R.id.google_sign_in);
-
-        signInButton.setOnClickListener(v -> {
-            String email = LoginScreen.this.email.getText().toString();
-            String password = passWord.getText().toString();
-            if(email.isEmpty()){
-                LoginScreen.this.email.setError("E-mail is required!");
-                LoginScreen.this.email.requestFocus();
-                return;
-            }
-            if(password.isEmpty()){
-                passWord.setError("Password is required!");
-                passWord.requestFocus();
-                return;
-            }
-            if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                LoginScreen.this.email.setError("Please provide a valid email!");
-                LoginScreen.this.email.requestFocus();
-                return;
-            }
-
-
-            mAuth.signInWithEmailAndPassword(email,password)
-                    .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                        @Override
-                        public void onSuccess(AuthResult authResult) {
-                            Toast.makeText(LoginScreen.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginScreen.this,ProjectFeed.class));
-                            finish();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(LoginScreen.this, "Invalid Credentials or User not registered", Toast.LENGTH_SHORT).show();
-                }
-            });
-        });
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("960104334396-427ck9b6k7vs62mlshd6d8pl4f1iq9b6.apps.googleusercontent.com")
@@ -158,7 +116,7 @@ public class LoginScreen extends AppCompatActivity {
                             //Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(LoginScreen.this, "Successfully signed in", LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginScreen.this, ProjectFeed.class));
+                            startActivity(new Intent(LoginScreen.this, ProjectFeedActivity.class));
                             finish();
 
                         } else {

@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.AddProjectActivity"
+    tools:context=".Activities.EditProjectActivity"
     android:orientation="vertical"
     android:background="@color/background"
     android:padding="20dp">
-    
+
     <ImageView
         android:id="@+id/ProjectImage"
         android:layout_width="match_parent"
@@ -37,18 +37,9 @@
         android:gravity="top"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Enquiry Details"
-        android:id="@+id/addNew"
-        android:onClick="openEnquiryDetails"
-        android:layout_gravity="center"/>
-
-    <Button
-        android:id="@+id/AddProject"
+        android:id="@+id/UpdateProject"
         android:layout_margin="24dp"
         style="@style/ButtonStyle"
-        android:text="Upload Project"/>
-
+        android:text="Update Project"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

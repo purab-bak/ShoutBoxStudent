@@ -8,7 +8,7 @@ import android.os.Handler;
 
 import org.kotakeducation.shoutboxstudent.R;
 
-public class MainActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //Write whatever to want to do after delay specified (1 sec)
-                Intent intent=new Intent(MainActivity.this,LoginScreen.class);
+                Intent intent=new Intent(SplashActivity.this,LoginScreen.class);
                 startActivity(intent);
                 finish();
                 //Log.d("Handler", "Running Handler");

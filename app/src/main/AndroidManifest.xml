@@ -9,11 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShoutBoxStudent">
-        <activity android:name=".Activities.ProjectFeed"></activity>
-        <activity android:name=".Activities.ProjectDisplay" />
-        <activity android:name=".Activities.AddProject" />
+        <activity android:name=".Activities.AddEnquiryDetailsActivity"></activity>
+        <activity android:name=".Activities.Comments" />
+        <activity android:name=".Activities.UserInfo" />
+        <activity android:name=".Activities.EditProjectActivity" />
+        <activity android:name=".Activities.ProjectDisplayActivity" />
+        <activity android:name=".Activities.AddProjectActivity" />
+        <activity android:name=".Activities.ProjectFeedActivity" />
         <activity android:name=".Activities.LoginScreen" />
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name=".Activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
